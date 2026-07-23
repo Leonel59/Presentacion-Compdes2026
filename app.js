@@ -31,15 +31,82 @@
   prevBtn.addEventListener('click', () => goTo(index - 1));
   nextBtn.addEventListener('click', () => goTo(index + 1));
 
-  fsBtn.addEventListener('click', async () => {
+  const isMobile = () =>
+    window.matchMedia('(max-width: 980px)').matches ||
+    ('ontouchstart' in window && window.innerWidth < 1100);
+
+  const setImmersive = (on) => {
+    document.body.classList.toggle('is-immersive', on);
+    fsBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    fsBtn.title = on ? 'Salir de modo presentación' : 'Pantalla completa / modo presentación';
+  };
+
+  const enterFullscreen = async () => {
+    const root = document.documentElement;
     try {
-      if (!document.fullscreenElement) {
-        await document.documentElement.requestFullscreen();
-      } else {
+      if (root.requestFullscreen) {
+        await root.requestFullscreen({ navigationUI: 'hide' });
+        return true;
+      }
+      if (root.webkitRequestFullscreen) {
+        root.webkitRequestFullscreen();
+        return true;
+      }
+    } catch (_) {
+      /* fallback below */
+    }
+    return false;
+  };
+
+  const exitFullscreen = async () => {
+    try {
+      if (document.fullscreenElement && document.exitFullscreen) {
         await document.exitFullscreen();
+        return;
+      }
+      if (document.webkitFullscreenElement && document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
       }
     } catch (_) {
       /* ignore */
+    }
+  };
+
+  fsBtn.addEventListener('click', async () => {
+    if (isMobile()) {
+      const next = !document.body.classList.contains('is-immersive');
+      setImmersive(next);
+      if (next) {
+        await enterFullscreen();
+        // Intento suave de ocultar barra del navegador
+        window.scrollTo(0, 1);
+      } else {
+        await exitFullscreen();
+      }
+      return;
+    }
+
+    try {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        const ok = await enterFullscreen();
+        if (!ok) setImmersive(true);
+      } else {
+        await exitFullscreen();
+        setImmersive(false);
+      }
+    } catch (_) {
+      setImmersive(!document.body.classList.contains('is-immersive'));
+    }
+  });
+
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement && !isMobile()) {
+      setImmersive(false);
+    }
+  });
+  document.addEventListener('webkitfullscreenchange', () => {
+    if (!document.webkitFullscreenElement && !isMobile()) {
+      setImmersive(false);
     }
   });
 

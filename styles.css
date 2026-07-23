@@ -21,6 +21,7 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+  min-height: 100dvh;
   background: var(--bg);
   color: var(--ink);
   font-family: 'Outfit', system-ui, sans-serif;
@@ -35,6 +36,7 @@ button {
   position: relative;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   isolation: isolate;
 }
@@ -1044,16 +1046,59 @@ td.improve {
   }
 
   .topbar {
-    flex-wrap: wrap;
-    row-gap: 8px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding:
+      calc(10px + env(safe-area-inset-top, 0px))
+      clamp(12px, 4vw, 20px)
+      10px;
+    background: rgba(5, 14, 46, 0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .brand-block {
+    width: 100%;
   }
 
   .header-logo {
-    max-width: min(100%, 520px);
+    height: 36px;
+    max-width: 100%;
+  }
+
+  .top-meta {
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
   }
 
   .meta-sgi {
     display: none;
+  }
+
+  .icon-btn {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .slide {
+    align-content: start;
+    padding:
+      calc(118px + env(safe-area-inset-top, 0px))
+      clamp(14px, 4vw, 22px)
+      calc(96px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .nav-controls {
+    right: max(12px, env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .nav-controls button {
+    min-width: 46px;
+    height: 46px;
   }
 
   .agenda-grid,
@@ -1080,6 +1125,30 @@ td.improve {
   .hint {
     display: none;
   }
+
+  /* Modo presentación móvil (fallback de fullscreen) */
+  body.is-immersive .topbar {
+    padding-top: calc(8px + env(safe-area-inset-top, 0px));
+    padding-bottom: 8px;
+  }
+
+  body.is-immersive .header-logo {
+    height: 30px;
+  }
+
+  body.is-immersive .slide {
+    padding-top: calc(96px + env(safe-area-inset-top, 0px));
+  }
+
+  body.is-immersive .deck {
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  body.is-immersive #fs-btn {
+    background: rgba(41, 169, 255, 0.35);
+    border-color: rgba(143, 211, 255, 0.55);
+  }
 }
 
 @media (max-width: 640px) {
@@ -1100,6 +1169,27 @@ td.improve {
 
   h1 {
     max-width: none;
+    font-size: clamp(1.7rem, 8vw, 2.4rem);
+  }
+
+  h2 {
+    font-size: clamp(1.45rem, 6.5vw, 2rem);
+  }
+
+  .topbar .top-meta > span:first-of-type {
+    font-size: 11px;
+  }
+
+  .slide {
+    padding-top: calc(124px + env(safe-area-inset-top, 0px));
+  }
+
+  body.is-immersive .slide {
+    padding-top: calc(102px + env(safe-area-inset-top, 0px));
+  }
+
+  .qr-code {
+    width: min(100%, 180px);
   }
 }
 
