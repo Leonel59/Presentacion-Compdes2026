@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#061331" />
+  <title>SGI-UNAH · COMPDES 2026</title>
+  <link rel="icon" href="assets/favicon-sgi.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="deck" id="inicio">
+    <div class="bg-image-animated" aria-hidden="true"></div>
+    <div class="bg-overlay-blue" aria-hidden="true"></div>
+    <canvas id="network-canvas" aria-hidden="true"></canvas>
+    <div class="progress" id="progress"></div>
+
+    <header class="topbar">
+      <div class="brand-block">
+        <img class="header-logo" src="assets/DICIHT_Blanco_Derecho.png" alt="UNAH · VRA · DICIHT" />
+      </div>
+      <div class="top-meta">
+        <span class="meta-sgi">
+          <img src="assets/favicon-sgi.png" alt="" />
+          SGI UNAH
+        </span>
+        <span>COMPDES 2026</span>
+        <span class="slide-counter" id="slide-counter">01 / 19</span>
+        <button class="icon-btn" id="fs-btn" type="button" title="Pantalla completa (F)" aria-label="Pantalla completa">⛶</button>
+      </div>
+    </header>
+
+    <main class="slides" aria-live="polite">
+      <!-- 1 -->
+      <section class="slide active" data-slide="1" aria-hidden="false">
+        <div class="slide-inner hero-grid">
+          <div>
+            <p class="eyebrow">COMPDES 2026 · UNAH</p>
+            <h1>Sistema de Gestión de la Investigación de la UNAH</h1>
+            <p class="lead">
+              Transformación digital con un enfoque de Ciencia Abierta.
+              Una plataforma institucional para ordenar, registrar y dar
+              seguimiento a la investigación universitaria.
+            </p>
+            <div class="chips">
+              <span class="chip">DICIHT</span>
+              <span class="chip">Ciencia abierta</span>
+              <span class="chip">sgi.unah.edu.hn</span>
+            </div>
+          </div>
+          <aside class="author-card glass">
+            <img class="sgi" src="assets/Logo_SGI_Final.webp" alt="Logo SGI" />
+            <p class="name">Ariel Gregorio Fuentes Mercado</p>
+            <p class="role">DICIHT — Universidad Nacional Autónoma de Honduras</p>
+            <p class="team">
+              Con Luis Mejía Romero · Héctor Díaz Padilla · Marcos Zúniga Solórzano ·
+              Jorge Moreno Alvarado · Fihama Pineda Flores
+            </p>
+            <a class="pill-link" href="https://sgi.unah.edu.hn" target="_blank" rel="noopener">sgi.unah.edu.hn</a>
+          </aside>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="slide" data-slide="2" aria-hidden="true">
+        <div class="slide-inner">
+          <p class="eyebrow">Agenda</p>
+          <h2>De la fragmentación de datos a una plataforma institucional de ciencia abierta</h2>
+          <div class="agenda-grid">
+            <article class="agenda-item glass">
+              <strong>01</strong>
+              <h3>Contexto y problemática</h3>
+              <p>Retos de gestionar investigación en una macrouniversidad.</p>
+            </article>
+            <article class="agenda-item glass">
+              <strong>02</strong>
+              <h3>Qué es SGI-UNAH</h3>
+              <p>Plataforma modular con enfoque de ciencia abierta.</p>
+            </article>
+            <article class="agenda-item glass">
+              <strong>03</strong>
+              <h3>Metodología y arquitectura</h3>
+              <p>Ágil + Design-Based Research + infraestructura.</p>
+            </article>
+            <article class="agenda-item glass">
+              <strong>04</strong>
+              <h3>Plataforma en producción</h3>
+              <p>Recorrido por el sistema real que usa hoy la UNAH.</p>
+            </article>
+            <article class="agenda-item glass">
+              <strong>05</strong>
+              <h3>Resultados e impacto</h3>
+              <p>Indicadores institucionales y mejoras de tiempo.</p>
+            </article>
+            <article class="agenda-item glass">
+              <strong>06</strong>
+              <h3>Hoja de ruta y cierre</h3>
+              <p>Próximos módulos y conclusiones.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="slide" data-slide="3" aria-hidden="true">
+        <div class="slide-inner split">
+          <div>
+            <p class="eyebrow">Contexto y problemática</p>
+            <h2>Gestionar investigación en una macrouniversidad es complejo</h2>
+            <p class="copy">
+              La UNAH es la institución de educación superior más grande de Honduras:
+              facultades, centros regionales, escuelas y departamentos coordinando
+              proyectos, investigadores, publicaciones, congresos y becas al mismo tiempo.
+            </p>
+            <div class="chips">
+              <span class="chip">Formularios independientes</span>
+              <span class="chip">Hojas de cálculo</span>
+              <span class="chip">Correos institucionales</span>
+              <span class="chip">Procedimientos manuales</span>
+            </div>
+          </div>
+          <div class="problem-list">
+            <article class="glass">
+              <h3>Fragmentación de datos</h3>
+              <p>Registros dispersos entre distintas instancias del SICIHT.</p>
+            </article>
+            <article class="glass">
+              <h3>Duplicidad de registros</h3>
+              <p>Un mismo investigador o proyecto capturado varias veces.</p>
+            </article>
+            <article class="glass">
+              <h3>Escasa trazabilidad</h3>
+              <p>Sin seguimiento claro del ciclo de vida de cada proyecto.</p>
+            </article>
+            <article class="glass">
+              <h3>Baja interoperabilidad</h3>
+              <p>Sistemas aislados, difíciles de conectar entre sí.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section class="slide" data-slide="4" aria-hidden="true">
+        <div class="slide-inner">
+          <p class="eyebrow">Antecedentes</p>
+          <h2>Del formulario aislado a una plataforma institucional</h2>
+          <div class="timeline">
+            <article class="step">
+              <strong>1</strong>
+              <h3>Primeros formularios</h3>
+              <p>DICIHT digitaliza el registro de proyectos con formularios electrónicos independientes.</p>
+            </article>
+            <article class="step">
+              <strong>2</strong>
+              <h3>El crecimiento exige más</h3>
+              <p>Más actividad investigativa y más instancias del SICIHT demandan información consolidada.</p>
+            </article>
+            <article class="step">
+              <strong>3</strong>
+              <h3>Equipos multidisciplinarios</h3>
+              <p>DICIHT conforma equipos técnicos y estudiantes becarios en tecnología.</p>
+            </article>
+            <article class="step">
+              <strong>4</strong>
+              <h3>Nace SGI-UNAH</h3>
+              <p>Plataforma modular inspirada en sistemas CRIS usados internacionalmente.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 -->
+      <section class="slide" data-slide="5" aria-hidden="true">
+        <div class="slide-inner split">
+          <div>
+            <p class="eyebrow">La solución</p>
+            <h2>SGI-UNAH: una plataforma institucional para la gestión de la investigación</h2>
+            <p class="copy">
+              Desarrollada por la DICIHT bajo principios de ciencia abierta y arquitectura modular,
+              para apoyar al SICIHT e integrar procesos, investigadores, proyectos y producción
+              científica en un solo lugar.
+            </p>
+            <p class="copy">
+              Comparte principios con los sistemas CRIS (Current Research Information Systems),
+              pero fue diseñado a la medida de las necesidades normativas, administrativas y
+              académicas de la UNAH.
+            </p>
+          </div>
+          <div class="feature-list">
+            <article class="glass">
+              <h3>Ciencia abierta</h3>
+              <p>Transparencia, acceso e indicadores abiertos.</p>
+            </article>
+            <article class="glass">
+              <h3>Arquitectura modular</h3>
+              <p>Nuevos módulos sin afectar el sistema en operación.</p>
+            </article>
+            <article class="glass">
+              <h3>Datos para decisiones</h3>
+              <p>Información consolidada y trazable para gestores.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section class="slide" data-slide="6" aria-hidden="true">
+        <div class="slide-inner">
+          <p class="eyebrow">Metodología</p>
+          <h2>Ágil + Investigación Basada en Diseño</h2>
+          <p class="copy">
+            La combinación de metodologías ágiles, Design-Based Research (DBR) y
+            Design Science Research (DSR) permitió construir soluciones validadas
+            con usuarios reales, de forma iterativa.
+          </p>
+          <div class="method-cycle">
+            <article class="step"><strong>1</strong><h3>Identificar</h3><p>Necesidades institucionales reales.</p></article>
+            <article class="step"><strong>2</strong><h3>Diseñar</h3><p>Soluciones tecnológicas contextualizadas.</p></article>
+            <article class="step"><strong>3</strong><h3>Implementar</h3><p>Prototipos funcionales.</p></article>
+            <article class="step"><strong>4</strong><h3>Validar</h3><p>Resultados con usuarios reales.</p></article>
+            <article class="step"><strong>5</strong><h3>Mejorar</h3><p>Incorporar mejora continua.</p></article>
+          </div>
+          <p class="footer-note">Un ciclo iterativo: cada vuelta retroalimenta la siguiente versión de la plataforma.</p>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="slide" data-slide="7" aria-hidden="true">
+        <div class="slide-inner">
+          <p class="eyebrow">Arquitectura del sistema</p>
+          <h2>Nueve módulos integrados en una sola plataforma</h2>
+          <div class="modules">
+            <article class="module"><span>01</span><h3>Censo de investigadores</h3><p>Información académica y científica de investigadores activos.</p></article>
+            <article class="module"><span>02</span><h3>Autorregistro</h3><p>Autoservicio para crear y actualizar perfiles institucionales.</p></article>
+            <article class="module"><span>03</span><h3>Gestión de proyectos</h3><p>Formulación, evaluación, seguimiento e informes de avance.</p></article>
+            <article class="module"><span>04</span><h3>Gestión de congresos</h3><p>Convocatorias, inscripciones, evaluación y constancias.</p></article>
+            <article class="module"><span>05</span><h3>Validador de certificados</h3><p>Verificación de autenticidad mediante código QR.</p></article>
+            <article class="module"><span>06</span><h3>Becas de investigación</h3><p>Convocatorias, solicitudes, evaluación y seguimiento.</p></article>
+            <article class="module"><span>07</span><h3>Publicaciones científicas</h3><p>Registro y seguimiento de la producción institucional.</p></article>
+            <article class="module"><span>08</span><h3>Catálogo digital</h3><p>Perfiles y líneas de investigación institucionales.</p></article>
+            <article class="module"><span>09</span><h3>Portal público de CTI</h3><p>Divulgación científica e indicadores abiertos.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section class="slide" data-slide="8" aria-hidden="true">
+        <div class="slide-inner">
+          <p class="eyebrow">Cómo opera</p>
+          <h2>Infraestructura tecnológica institucional</h2>
+          <p class="copy">
+            Una operación centralizada, versionada y con entornos diferenciados
+            para desarrollo, pruebas y producción.
+          </p>
+          <div class="infra-grid">
+            <article class="glass"><h3>Servidores institucionales</h3><p>Infraestructura centralizada propia de la UNAH.</p></article>
+            <article class="glass"><h3>Acceso seguro por VPN</h3><p>Redes privadas virtuales para operación protegida.</p></article>
+            <article class="glass"><h3>Control de versiones</h3><p>GitLab con estrategias de ramificación del código.</p></article>
+            <article class="glass"><h3>Entornos diferenciados</h3><p>Desarrollo, pruebas y producción separados.</p></article>
+          </div>
+          <p class="footer-note">
+            Equipos especializados en análisis, desarrollo, soporte técnico, experiencia de usuario
+            y capacitación institucional coordinan el trabajo colaborativo.
+          </p>
+        </div>
+      </section>
+
+      <!-- 9 -->
+      <section class="slide" data-slide="9" aria-hidden="true">
+        <div class="slide-inner split">
+          <div>
+            <p class="eyebrow">En producción</p>
+            <h2>El sistema, en vivo</h2>
+            <p class="copy">No es una maqueta: es la plataforma real que usa hoy la comunidad UNAH.</p>
+            <div class="demo-list">
+              <article class="glass"><strong>1</strong><div><h3>Portal público de CTI</h3><p>Ciencia, Tecnología e Innovación al alcance de todos.</p></div></article>
+              <article class="glass"><strong>2</strong><div><h3>Catálogo digital</h3><p>Investigadores y líneas de investigación.</p></div></article>
+              <article class="glass"><strong>3</strong><div><h3>Ciclo de vida del proyecto</h3><p>De la formulación a la finalización.</p></div></article>
+              <article class="glass"><strong>4</strong><div><h3>Validación QR</h3><p>Certificados verificables al instante.</p></div></article>
+            </div>
+          </div>
+          <aside class="preview-shell">
+            <div class="preview-topbar"><span></span><span></span><span></span></div>
+            <div class="preview-body">
+              <strong>sgi.unah.edu.hn</strong>
+              <p>Plataforma institucional en producción para la gestión de la investigación UNAH.</p>
+              <div class="preview-cards">
+                <span>Portal</span>
+                <span>Catálogo</span>
+                <span>QR</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section class="slide" data-slide="10" aria-hidden="true">
+        <div class="slide-inner split">
+          <div>
+            <p class="eyebrow">Plataforma en producción · Vista 1</p>
+            <h2>Portal público de Ciencia, Tecnología e Innovación</h2>
+            <p class="copy">
+              Espacio abierto orientado a la divulgación de información científica
+              y la generación de indicadores abiertos para toda la comunidad.
+            </p>
+            <div class="chips">
+              <span class="chip">Catálogo de investigadores</span>
+              <span class="chip">Indicadores abiertos</span>
+              <span class="chip">Producción científica</span>
+              <span class="chip">Noticias y divulgación</span>
+            </div>
+            <p class="footer-note">sgi.unah.edu.hn/portafolio · Portafolio de Investigación UNAH</p>
+          </div>
+          <div class="kpi-row" style="grid-template-columns:1fr; align-content:start;">
+            <article class="glass"><strong>1,637</strong><span>Investigadores</span></article>
+            <article class="glass"><strong>1,228</strong><span>Proyectos</span></article>
+            <article class="glass"><strong>113</strong><span>Certificados QR</span></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 -->
+      <section class="slide" data-slide="11" aria-hidden="true">
+        <div class="slide-inner">
+          <p class="eyebrow">Plataforma en producción · Vista 2</p>
+          <h2>El ciclo de vida completo de un proyecto de investigación</h2>
+          <p class="copy">
+            El módulo de Gestión de Proyectos administra cada etapa, con trazabilidad
+            de principio a fin — algo imposible con formularios y correos sueltos.
+          </p>
+          <div class="flow-pills">
+            <span>Formulación</span>
+            <span>Evaluación</span>
+            <span>Aprobación</span>
+            <span>Seguimiento</span>
+            <span>Informes de avance</span>
+            <span>Finalización</span>
+          </div>
+          <article class="glass" style="margin-top:22px;padding:20px;">
+            <h3 style="margin:0 0 8px;">Al finalizar</h3>
+            <p class="copy" style="margin:0;">
+              Se emite una constancia con validación por código QR — verificable de forma
+              inmediata por cualquier persona, sin trámites adicionales.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 12 -->
+      <section class="slide" data-slide="12" aria-hidden="true">
+        <div class="slide-inner">
+          <p class="eyebrow">Resultados</p>
+          <h2>La plataforma en números</h2>
+          <p class="copy">Indicadores preliminares de adopción institucional al momento de este trabajo.</p>
+          <div class="stats-grid">
+            <article class="stat"><strong>01</strong><span class="value">1,637</span><span class="pct">100%</span><span class="label">Investigadores registrados</span></article>
+            <article class="stat"><strong>02</strong><span class="value">1,146</span><span class="pct">70%</span><span class="label">Usuarios activos del sistema</span></article>
+            <article class="stat"><strong>03</strong><span class="value">1,228</span><span class="pct">100%</span><span class="label">Proyectos registrados</span></article>
+            <article class="stat"><strong>04</strong><span class="value">338</span><span class="pct">27.5%</span><span class="label">Proyectos finalizados</span></article>
+            <article class="stat"><strong>05</strong><span class="value">116</span><span class="pct">9.44%</span><span class="label">Proyectos en seguimiento</span></article>
+            <article class="stat"><strong>06</strong><span class="value">113</span><span class="pct">100%</span><span class="label">Certificados con validación QR</span></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13 -->
+      <section class="slide" data-slide="13" aria-hidden="true">
+        <div class="slide-inner">
+          <p class="eyebrow">Resultados</p>
+          <h2>Cobertura institucional integrada al sistema</h2>
+          <p class="copy">Estructuras académicas y de investigación de la UNAH incorporadas al SGI-UNAH.</p>
+          <div class="bars">
+            <!-- Barras con escala visual suavizada para proyección -->
+            <div class="bar-row"><span class="name">Escuelas académicas</span><div class="bar-track"><div class="bar-fill" style="--w:18%"></div></div><span class="val">4</span></div>
+            <div class="bar-row"><span class="name">Centros de innovación</span><div class="bar-track"><div class="bar-fill" style="--w:22%"></div></div><span class="val">7</span></div>
+            <div class="bar-row"><span class="name">Campus universitarios</span><div class="bar-track"><div class="bar-fill" style="--w:26%"></div></div><span class="val">9</span></div>
+            <div class="bar-row"><span class="name">Observatorios</span><div class="bar-track"><div class="bar-fill" style="--w:26%"></div></div><span class="val">9</span></div>
+            <div class="bar-row"><span class="name">Facultades</span><div class="bar-track"><div class="bar-fill" style="--w:28%"></div></div><span class="val">10</span></div>
+            <div class="bar-row"><span class="name">Centros experimentales</span><div class="bar-track"><div class="bar-fill" style="--w:30%"></div></div><span class="val">12</span></div>
+            <div class="bar-row"><span class="name">Institutos de investigación</span><div class="bar-track"><div class="bar-fill" style="--w:30%"></div></div><span class="val">12</span></div>
+            <div class="bar-row"><span class="name">Grupos de investigación</span><div class="bar-track"><div class="bar-fill" style="--w:58%"></div></div><span class="val">67</span></div>
+            <div class="bar-row"><span class="name">UGIC</span><div class="bar-track"><div class="bar-fill" style="--w:92%"></div></div><span class="val">120</span></div>
+            <div class="bar-row"><span class="name">Departamentos académicos</span><div class="bar-track"><div class="bar-fill" style="--w:100%"></div></div><span class="val">128</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14 -->
+      <section class="slide" data-slide="14" aria-hidden="true">
+        <div class="slide-inner">
+          <p class="eyebrow">Resultados</p>
+          <h2>Menos días de espera, más tiempo para investigar</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Proceso</th>
+                  <th>Antes del SGI-UNAH</th>
+                  <th>Con SGI-UNAH</th>
+                  <th>Mejora</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Registro de proyectos</td><td>Hasta 30 días o más</td><td>3 a 7 días</td><td class="improve">75%–90%</td></tr>
+                <tr><td>Revisión de proyectos</td><td>Hasta 30 días o más</td><td>3 a 7 días</td><td class="improve">75%–90%</td></tr>
+                <tr><td>Emisión de constancias</td><td>Hasta 30 días o más</td><td>3 a 7 días</td><td class="improve">75%–90%</td></tr>
+                <tr><td>Verificación de certificados</td><td>Hasta 30 días o más</td><td>Inmediata (QR)</td><td class="improve">90%–100%</td></tr>
+                <tr><td>Consolidación de reportes</td><td>15 a 30 días</td><td>5 min a 1 hora</td><td class="improve">98%–99%</td></tr>
+                <tr><td>Consulta de investigadores</td><td>Manual (horas o días)</td><td>Inmediata</td><td class="improve">95%–100%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 15 -->
+      <section class="slide" data-slide="15" aria-hidden="true">
+        <div class="slide-inner">
+          <p class="eyebrow">Resultados</p>
+          <h2>De lo disperso a lo automatizado</h2>
+          <div class="compare">
+            <article class="glass"><span class="label">Registro de proyectos</span><span class="before">Formularios independientes</span><span class="after">Plataforma integrada</span></article>
+            <article class="glass"><span class="label">Seguimiento</span><span class="before">Manual</span><span class="after">Automatizado</span></article>
+            <article class="glass"><span class="label">Certificados</span><span class="before">Verificación manual</span><span class="after">Código QR</span></article>
+            <article class="glass"><span class="label">Reportes</span><span class="before">Consolidación manual</span><span class="after">Generación automática</span></article>
+            <article class="glass"><span class="label">Consulta de investigadores</span><span class="before">Archivos dispersos</span><span class="after">Catálogo digital</span></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 16 -->
+      <section class="slide" data-slide="16" aria-hidden="true">
+        <div class="slide-inner impact-grid">
+          <div>
+            <p class="eyebrow">Impacto institucional</p>
+            <h2>Más allá de la automatización</h2>
+            <p class="copy">
+              La transformación digital de la investigación universitaria trasciende lo administrativo:
+              fortalece la gobernanza, la calidad del dato y la cultura de evidencia.
+            </p>
+            <div class="feature-list" style="margin-top:16px;">
+              <article class="glass"><h3>Gobernanza del SICIHT</h3><p>Coordina facultades, centros, institutos y observatorios en una sola infraestructura.</p></article>
+              <article class="glass"><h3>Cultura basada en evidencia</h3><p>Indicadores confiables para planificación, seguimiento y evaluación.</p></article>
+              <article class="glass"><h3>Hacia la ciencia abierta</h3><p>Base para un ecosistema institucional de investigación e innovación.</p></article>
+            </div>
+          </div>
+          <div>
+            <p class="quote">
+              “La receptividad de la comunidad universitaria ha sido favorable, con participación
+              creciente de investigadores, docentes, estudiantes y gestores en distintas regiones del país.”
+            </p>
+            <img class="seal" style="margin-top:18px;display:block;margin-left:auto;" src="assets/Sellos_calidad_2025.png" alt="Sellos de calidad 2025" />
+          </div>
+        </div>
+      </section>
+
+      <!-- 17 -->
+      <section class="slide" data-slide="17" aria-hidden="true">
+        <div class="slide-inner">
+          <p class="eyebrow">Lo que viene</p>
+          <h2>Hoja de ruta: próximos módulos</h2>
+          <div class="roadmap">
+            <article class="glass">
+              <div>
+                <h3>Módulo curricular para investigadores</h3>
+                <p>Trayectorias académicas, producción científica y participación en investigación.</p>
+              </div>
+              <span class="badge soon">Maquetación · 2–3 meses</span>
+            </article>
+            <article class="glass">
+              <div>
+                <h3>Gestión de revistas científicas</h3>
+                <p>Gestión editorial, seguimiento de publicaciones e indicadores de producción.</p>
+              </div>
+              <span class="badge">Análisis y diseño</span>
+            </article>
+            <article class="glass">
+              <div>
+                <h3>Comunicación y divulgación científica</h3>
+                <p>Noticias, eventos, convocatorias y productos de las actividades científicas.</p>
+              </div>
+              <span class="badge">Análisis y diseño</span>
+            </article>
+            <article class="glass">
+              <div>
+                <h3>Módulo administrativo operativo</h3>
+                <p>Seguimiento y control interno de la gestión institucional de la investigación.</p>
+              </div>
+              <span class="badge">Análisis y diseño</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 18 -->
+      <section class="slide" data-slide="18" aria-hidden="true">
+        <div class="slide-inner">
+          <p class="eyebrow">Conclusiones</p>
+          <h2>Una infraestructura estratégica para la investigación universitaria</h2>
+          <div class="conclusions">
+            <article class="glass"><strong>1</strong><p class="copy" style="margin:0;">Integra 1,637 investigadores y 1,228 proyectos, con cobertura del 100% de facultades y campus.</p></article>
+            <article class="glass"><strong>2</strong><p class="copy" style="margin:0;">La automatización redujo los tiempos de gestión entre 75% y 99% según el proceso.</p></article>
+            <article class="glass"><strong>3</strong><p class="copy" style="margin:0;">Combina metodologías ágiles, DBR y DSR para una plataforma validada por usuarios reales.</p></article>
+            <article class="glass"><strong>4</strong><p class="copy" style="margin:0;">Arquitectura modular que permite crecer sin afectar los módulos ya en producción.</p></article>
+            <article class="glass"><strong>5</strong><p class="copy" style="margin:0;">Sienta las bases de un ecosistema institucional de ciencia abierta e innovación.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 19 -->
+      <section class="slide" data-slide="19" aria-hidden="true">
+        <div class="slide-inner thanks">
+          <p class="eyebrow">COMPDES 2026</p>
+          <h1>¡Gracias!</h1>
+          <p class="lead">Preguntas y comentarios sobre el SGI-UNAH</p>
+          <div class="thanks-layout">
+            <div class="thanks-card glass">
+              <img src="assets/Logo_SGI_Final.webp" alt="Logo SGI" />
+              <p class="name" style="margin:0;font-weight:800;font-size:1.2rem;">Ariel Gregorio Fuentes Mercado</p>
+              <p class="role" style="margin:0;color:var(--soft);">ariel.fuentes@unah.hn</p>
+              <p class="role" style="margin:0;color:var(--soft);">DICIHT — Universidad Nacional Autónoma de Honduras</p>
+              <div class="thanks-actions">
+                <a class="button primary" href="https://sgi.unah.edu.hn" target="_blank" rel="noopener">Explora la plataforma</a>
+                <a class="button secondary" href="https://sgi.unah.edu.hn" target="_blank" rel="noopener">sgi.unah.edu.hn</a>
+              </div>
+            </div>
+            <aside class="qr-card glass">
+              <img class="qr-code" src="assets/qr-sgi.png" alt="Código QR hacia sgi.unah.edu.hn" />
+              <p>Escanea para abrir la plataforma</p>
+              <a href="https://sgi.unah.edu.hn" target="_blank" rel="noopener">sgi.unah.edu.hn</a>
+              <span class="demo-label">Demo en vivo</span>
+              <a class="demo-link" href="https://ira-pour-itself-wealth.trycloudflare.com" target="_blank" rel="noopener">ira-pour-itself-wealth.trycloudflare.com</a>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <p class="hint">← → navegar · F pantalla completa · Espacio siguiente</p>
+    <div class="nav-controls">
+      <button id="prev-btn" type="button" aria-label="Anterior" disabled>‹</button>
+      <button id="next-btn" type="button" aria-label="Siguiente">›</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
